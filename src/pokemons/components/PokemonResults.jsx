@@ -3,9 +3,10 @@ import {  Box, List,
 
 
 import StarIcon from '@mui/icons-material/Star';
-import { useState } from 'react';
+import {  useState } from 'react';
 
 export const PokemonResults = () => {
+
 
     const [pokemons, setPokemons] = useState([
         {
@@ -20,56 +21,45 @@ export const PokemonResults = () => {
                 name: 'pokemon 3',
                 isActive: false
             }
-             ]);
+             ]);  
 
-             const [favPokes, setfavPokes] = useState([])
-
+             const [favPokes, setfavPokes] = useState([]);
+             const [starColor, setstarColor] = useState(' ');
+      
+             
+         const starActive =(p) =>{
+             
+             p.isActive = !p.isActive;
+             if(p.isActive){
+                console.log(p);
+                setfavPokes([{name: p.name, isActive: p.isActive}]);
+                console.log(favPokes);
     
+           } else{
+                return
+           }
 
-  
-       const starActive =(p) =>{
-        p.isActive = !p.isActive;
-        
-      //  setfavPokes(...favPokes, [{p.name, p.isActive}]);
-
-            
-            
-        console.log(p);
-            
         } 
 
-  
-
-
   return (
-    <Box sx={{ width: '100%'}}>
-   
+    <Box sx={{ width: '100%'}}>   
         <List
             sx={{ width: '100%', maxWidth: 360,margin:'auto', bgcolor: 'background.paper' }}
             aria-label="contacts"
             >
-                {
-                    pokemons.map((p)=>
-                      
+             {   
+                 pokemons.map((p)=>                      
                         <ListItem key={p.name} disablePadding>
                             <ListItemButton sx={{mb: 1}} >
                                 <ListItemText primary={p.name} />
-                                    <ListItemIcon onClick={()=>starActive(p)} >
-                                        <StarIcon  sx={{ color:'yellow'}}/>
+                                    <ListItemIcon onClick={(e)=>{ starActive(p);}} >
+                                        <StarIcon  sx={{ color: `${ starColor }`}}/>
                                 </ListItemIcon>             
                             </ListItemButton>
-                        </ListItem> 
-                       
-                      
-                      
+                        </ListItem>                       
                     )
-                 
-
-                }
-       
-            
+                }           
         </List>
-
     </Box>
   )
 }
