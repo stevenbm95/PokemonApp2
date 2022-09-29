@@ -8,18 +8,21 @@ import StarIcon from '@mui/icons-material/Star';
 import { PokemonResults, Search } from '../components';
 
 
-export const PokemonList = () => {
+export const PokemonList = ({pokemonsList}) => {
     
   return (
     <Grid sx={{
-            width: 500, height: 700, 
+             
             background: '#2222',
-            display: 'flex', alignItems: 'center', justifyContent: 'space-between', 
+            margin: 'auto',
+            display: 'flex', alignItems: 'center', justifyContent: 'space-around', 
             flexDirection:' column',
-            padding: 2 }}>
+            padding: 2,
+            height: '100vh'
+            }}>
                 
                 <Search/>
-                <PokemonResults>
+                <PokemonResults pokemonsList={pokemonsList}>
 
                 </PokemonResults>
         
