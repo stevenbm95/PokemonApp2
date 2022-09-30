@@ -56,7 +56,7 @@ export const PokemonResults = ({pokemonsList}) => {
                     }
             </List> 
                 {
-                favPokes.length > 0 ?  <FavPokesList favPokes={favPokes }/>
+                favPokes.length > 0 ?  <FavPokesList favPokes={favPokes} setFavPokes={setFavPokes }/>
 
               : false
             }  

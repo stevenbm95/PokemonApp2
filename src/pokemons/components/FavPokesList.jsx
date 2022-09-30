@@ -4,10 +4,10 @@ import StarIcon from '@mui/icons-material/Star';
 import { changeStatePokemon } from '../Helpers/changeStatePokemon';
 
 
-export const FavPokesList = ({favPokes}) => {
+export const FavPokesList = ({favPokes}, setFavPokes) => {
 
 
-
+    console.log(favPokes,setFavPokes )
     const clickDeletFavPoke = (p,favPokes) => {
         
         const newFavPokes = changeStatePokemon(p, favPokes);
