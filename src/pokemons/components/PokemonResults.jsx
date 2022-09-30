@@ -3,6 +3,8 @@ import {  Box, List,
 
 import StarIcon from '@mui/icons-material/Star';
 import { useEffect, useState } from 'react';
+import { FavPokesList } from './FavPokesList';
+import { changeStatePokemon } from '../Helpers/changeStatePokemon';
 
 
 export const PokemonResults = ({pokemonsList}) => {
@@ -21,13 +23,10 @@ export const PokemonResults = ({pokemonsList}) => {
     }, [favPokes]);
     
 
-    const changeStatePokemon = (p) => {
-        p.favoriteState =  !p.favoriteState         
-        
-        const newFavPoke = pokemons.filter(pf =>{return  pf.favoriteState });
-      
-        setFavPokes(newFavPoke); 
-        }
+    const clickFavPoke = (p, pokemons) => {
+        const newFavPokes = changeStatePokemon(p, pokemons);
+        setFavPokes(newFavPokes); 
+    }
     const changeColor = (p,i) => {
         setStarColor('yellow');
     }
@@ -36,20 +35,17 @@ export const PokemonResults = ({pokemonsList}) => {
 
   return (
     <>
-        <Box sx={{ width: '100%'}}>   
+        <Box sx={{ width: '100%', display:'flex'}}>   
             <List 
                 sx={{ maxWidth: 360, maxHeight: 500, overflow: 'auto', margin:'auto', bgcolor: 'background.paper' }}
                 aria-label="contacts"
                 >
                     {
-                        pokemons.map((p,i)=>                      
+                        pokemons.map((p)=>                      
                         <ListItem key={p.name} disablePadding>
                             <ListItemButton 
                                 sx={{mb: 1}} 
-                                onClick={()=>{ changeStatePokemon(p)
-                                    changeColor(p,i);
-                                
-                                }}  >
+                                onClick={()=>{ clickFavPoke(p, pokemons) }}  >
                                 <ListItemText primary={p.name} />
                                     <ListItemIcon >
                                         <StarIcon  sx={ {color: starColor}}/>
@@ -58,7 +54,12 @@ export const PokemonResults = ({pokemonsList}) => {
                         </ListItem>
                         )
                     }
-            </List>        
+            </List> 
+                {
+                favPokes.length > 0 ?  <FavPokesList favPokes={favPokes }/>
+
+              : false
+            }  
         </Box>
 
     </>
