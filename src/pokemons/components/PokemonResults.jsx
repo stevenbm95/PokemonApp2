@@ -10,8 +10,7 @@ import { changeStatePokemon } from '../Helpers/changeStatePokemon';
 export const PokemonResults = ({pokemons}) => {
 
    
-    console.log(pokemons);
-    const [favPokes, setFavPokes] = useState([]);   
+   const [favPokes, setFavPokes] = useState([]);   
     const [starColor, setStarColor] = useState('');
     
 
