@@ -8,8 +8,8 @@ import StarIcon from '@mui/icons-material/Star';
 import { PokemonResults, Search } from '../components';
 
 
-export const PokemonList = ({pokemonsList}) => {
-    
+export const PokemonList = ({pokemons}) => {
+  
   return (
     <Grid sx={{
              
@@ -22,7 +22,7 @@ export const PokemonList = ({pokemonsList}) => {
             }}>
                 
                 <Search/>
-                <PokemonResults pokemonsList={pokemonsList}>
+                <PokemonResults pokemons={pokemons}>
 
                 </PokemonResults>
         

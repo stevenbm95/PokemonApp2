@@ -7,21 +7,15 @@ import { FavPokesList } from './FavPokesList';
 import { changeStatePokemon } from '../Helpers/changeStatePokemon';
 
 
-export const PokemonResults = ({pokemonsList}) => {
+export const PokemonResults = ({pokemons}) => {
 
    
-    const [pokemons, setPokemons] = useState([]);
-    const [favPokes, setFavPokes] = useState([]);  
+    console.log(pokemons);
+    const [favPokes, setFavPokes] = useState([]);   
     const [starColor, setStarColor] = useState('');
     
-    useEffect(() => {
-        setPokemons(pokemonsList);        
-    }, [pokemonsList]);
 
-    useEffect(() => {
-      
-    }, [favPokes]);
-    
+
 
     const clickFavPoke = (p, pokemons) => {
         const newFavPokes = changeStatePokemon(p, pokemons);
@@ -30,8 +24,6 @@ export const PokemonResults = ({pokemonsList}) => {
     const changeColor = (p,i) => {
         setStarColor('yellow');
     }
-        console.log(favPokes);
-
 
   return (
     <>
@@ -56,7 +48,7 @@ export const PokemonResults = ({pokemonsList}) => {
                     }
             </List> 
                 {
-                favPokes.length > 0 ?  <FavPokesList favPokes={favPokes} setFavPokes={setFavPokes }/>
+                favPokes.length > 0 ?  <FavPokesList favPokes={favPokes} setFavPokes = {setFavPokes}/>
 
               : false
             }  
