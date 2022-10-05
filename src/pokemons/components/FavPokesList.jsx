@@ -2,29 +2,38 @@ import { List, ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui
 
 import StarIcon from '@mui/icons-material/Star';
 import { changeStatePokemon } from '../Helpers/changeStatePokemon';
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setFavoritesPokemons } from "../store/slices";
 
 
-export const FavPokesList = ({favPokes}, setFavPokes) => {
+export const FavPokesList = ({newFavPoke}) => {
+    
+    const dispatch = useDispatch();
+    const {favoritesPokemons} = useSelector(state => state.pokemons);
 
-
-    console.log(favPokes,setFavPokes )
-    const clickDeletFavPoke = (p,favPokes) => {
+    const deleteFavoritePokemon = (p) => {
+        const selectedPokemon = favoritesPokemons.filter(pokemon => pokemon.name !== p.name);
         
-        const newFavPokes = changeStatePokemon(p, favPokes);
-        setFavPokes(newFavPokes); 
-
+        dispatch(                
+                setFavoritesPokemons({ favoritesPokemons: selectedPokemon})
+                );
+        
+        
     }
+    console.log(favoritesPokemons);
   return (
     <List
     sx={{ maxWidth: 360, maxHeight: 500, overflow: 'auto', margin:'auto', bgcolor: 'background.paper' }}
     aria-label="contacts"
     >
+        <h1>favpokes</h1>
         {
-            favPokes.map((p,i)=>                      
+            newFavPoke.map((p,i)=>                      
             <ListItem key={p.name} disablePadding>
                 <ListItemButton 
                     sx={{mb: 1}} 
-                    onClick={()=>{ clickDeletFavPoke(p,favPokes); }}  >
+                    onClick={()=>{ deleteFavoritePokemon(p); }}  >
                     <ListItemText primary={p.name} />
                         <ListItemIcon >
                             <StarIcon  sx={ {}}/>

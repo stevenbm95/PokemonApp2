@@ -11,6 +11,6 @@ export const getPokemons =  () => {
         console.log(data);  
 
     
-        dispatch(setPokemons( {pokemons: data.results, favorite:false  } ));
+        dispatch(setPokemons( {pokemons: data.results  } ));
     }
   }

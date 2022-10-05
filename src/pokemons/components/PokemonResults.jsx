@@ -1,28 +1,28 @@
-import {  Box, List,
-    ListItem , ListItemButton,ListItemIcon , ListItemText  } from '@mui/material';
-
+import {  Box, List,ListItem , ListItemButton,ListItemIcon , ListItemText  } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
-import { useEffect, useState } from 'react';
+
 import { FavPokesList } from './FavPokesList';
 import { changeStatePokemon } from '../Helpers/changeStatePokemon';
+import { useDispatch, useSelector } from 'react-redux';
+import { setFavoritesPokemons } from '../store/slices';
 
 
 export const PokemonResults = ({pokemons}) => {
 
-   
-   const [favPokes, setFavPokes] = useState([]);   
-    const [starColor, setStarColor] = useState('');
-    
+    const dispatch = useDispatch();
+    const {favoritesPokemons} = useSelector(state => state.pokemons);
 
+    const clickFavPoke = (p) => {
 
+        const filtred = favoritesPokemons.map(pok => pok.name).includes(p.name);
 
-    const clickFavPoke = (p, pokemons) => {
-        const newFavPokes = changeStatePokemon(p, pokemons);
-        setFavPokes(newFavPokes); 
-    }
-    const changeColor = (p,i) => {
-        setStarColor('yellow');
-    }
+        !filtred ?         
+            dispatch( setFavoritesPokemons(
+                    { favoritesPokemons: [...favoritesPokemons,p]} )
+                    )  
+        : false ;                  
+         }
+
 
   return (
     <>
@@ -39,18 +39,19 @@ export const PokemonResults = ({pokemons}) => {
                                 onClick={()=>{ clickFavPoke(p, pokemons) }}  >
                                 <ListItemText primary={p.name} />
                                     <ListItemIcon >
-                                        <StarIcon  sx={ {color: starColor}}/>
+                                        <StarIcon  sx={ {}}/>
                                     </ListItemIcon>             
                             </ListItemButton>
                         </ListItem>
                         )
                     }
             </List> 
-                {
+            <FavPokesList newFavPoke={favoritesPokemons}/>
+                {/* {
                 favPokes.length > 0 ?  <FavPokesList favPokes={favPokes} setFavPokes = {setFavPokes}/>
 
               : false
-            }  
+            }   */}
         </Box>
 
     </>
