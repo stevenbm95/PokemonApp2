@@ -15,19 +15,15 @@ export const FavPokesList = ({newFavPoke}) => {
     const deleteFavoritePokemon = (p) => {
         const selectedPokemon = favoritesPokemons.filter(pokemon => pokemon.name !== p.name);
         
-        dispatch(                
-                setFavoritesPokemons({ favoritesPokemons: selectedPokemon})
-                );
-        
-        
+        dispatch( setFavoritesPokemons({ favoritesPokemons: selectedPokemon})  );      
     }
-    console.log(favoritesPokemons);
+    
   return (
     <List
     sx={{ maxWidth: 360, maxHeight: 500, overflow: 'auto', margin:'auto', bgcolor: 'background.paper' }}
     aria-label="contacts"
     >
-        <h1>favpokes</h1>
+        <h1>Favorites</h1>
         {
             newFavPoke.map((p,i)=>                      
             <ListItem key={p.name} disablePadding>

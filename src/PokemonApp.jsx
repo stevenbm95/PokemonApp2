@@ -9,7 +9,6 @@ export const PokemonApp = () => {
 
   const dispatch = useDispatch();
   const {isLoading, pokemons} = useSelector(state => state.pokemons); 
-  const [searchByName, setSearchByName] = useState('');
 
   useEffect(() => {
     dispatch(getPokemons()); 
