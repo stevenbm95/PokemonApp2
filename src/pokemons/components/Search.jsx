@@ -8,15 +8,10 @@ export const Search = () => {
 
   const dispatch = useDispatch();
   const {filterByName, pokemons} = useSelector(state => state.pokemons); 
- // const [searchByName, setSearchByName] = useState('');
-
-  
 
   const onSearchByName = ({value}) => {  
-   // setSearchByName(value);
 
    const pokemonByName = pokemons.filter( pokemon => pokemon.name.includes(value));
-    console.log(pokemonByName);
    dispatch( setFilterByName({filterByName: value} ));
   }  
 

@@ -8,9 +8,15 @@ export const getPokemons =  () => {
         dispatch( startLoadinPokemons() );
           // const url = `https://pokeapi.co/api/v2/pokemon/`;
         const {data} = await pokemonApi.get('https://pokeapi.co/api/v2/pokemon/');
-        console.log(data);  
-
+        const pokemons = data.results.map( pok => {
+                return {
+                  name: pok.name,
+                  url: pok. url,
+                  favorite: false
+                }
+                
+              });
+        dispatch(setPokemons( {pokemons: pokemons } ));
     
-        dispatch(setPokemons( {pokemons: data.results  } ));
     }
   }

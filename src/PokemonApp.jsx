@@ -14,6 +14,8 @@ export const PokemonApp = () => {
     dispatch(getPokemons()); 
    
   }, []);
+
+
  
   return (
 
