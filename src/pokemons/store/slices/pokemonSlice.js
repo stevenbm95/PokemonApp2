@@ -3,11 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 export const pokemonSlice = createSlice({
   name: 'pokemons',
   initialState : {
-    pokemons: [{
-      name: '',
-      url:'',
-      favorte: false
-    }],
+    pokemons: [],
     isLoading: false,
     favoritesPokemons: [],
     filterByName: ''

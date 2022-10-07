@@ -12,7 +12,7 @@ export const getPokemons =  () => {
                 return {
                   name: pok.name,
                   url: pok. url,
-                  favorite: false
+                  isFavorite: false
                 }
                 
               });

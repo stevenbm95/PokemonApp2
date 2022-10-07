@@ -2,11 +2,9 @@ import { Box, Button, List, ListItem, ListItemButton, ListItemIcon, ListItemText
 import StarIcon from '@mui/icons-material/Star';
 import Favicon from '@mui/icons-material/Grade';
 import ListIcon from '@mui/icons-material/FormatListBulleted';
-import { FavPokesList } from './FavPokesList';
-import { changeStatePokemon } from '../Helpers/changeStatePokemon';
 import { useDispatch, useSelector } from 'react-redux';
-import { setFavoritesPokemons, setFilterByName } from '../store/slices';
-import { useEffect, useState } from 'react';
+import { setFavoritesPokemons, setFilterByName, setPokemons } from '../store/slices';
+import { useEffect, useRef, useState } from 'react';
 
 
 export const PokemonResults = ({ pokemons }) => {
@@ -14,32 +12,54 @@ export const PokemonResults = ({ pokemons }) => {
     const dispatch = useDispatch();
     const { filterByName, favoritesPokemons } = useSelector(state => state.pokemons);
     const [listPokemons, setListPokemons] = useState([]); 
-    const [starColor, setStarColor] = useState('');
-
+    const starColor = useRef('');
+    
     useEffect(() => {
         setListPokemons(pokemons);
+
     }, [pokemons])
     
-    
+    const clickFavPoke = (p) => {
 
+        const favorites =  listPokemons.filter(po => po.name != p.name);
+        setListPokemons([...favorites,{
+            name: p.name,
+            url: p.url,
+            isFavorite: p.isFavorite
+            
+        }]);
+        
+        console.log(favorites)
         
 
-    const clickFavPoke = (p) => {
-        const filtred = favoritesPokemons.map(pok => pok.name).includes(p.name);
-        // !filtred ?
+        // const addFavorite = listPokemons.map( pokemon =>{
+        //     if(pokemon.name === p.name & p.isFavorite === false){
+        //         return {
+        //             name: pokemon.name,
+        //             url: pokemon.url,
+        //             isFavorite: true 
+        //         }                
+        //     } else {
+        //         return {
+        //             name: pokemon.name,
+        //             url: pokemon.url,
+        //             isFavorite: false 
+        //         }  
+        //     }
             
-        //     dispatch(setFavoritesPokemons(
-        //         { favoritesPokemons: [...favoritesPokemons, p] })
-        //     )
-        //     : false;
-
-        if (!filtred){
-            dispatch(setFavoritesPokemons(
-                        { favoritesPokemons: [...favoritesPokemons, p] })
-                     )
-                     setStarColor('yellow');
-        }
+            
+        //     return pokemon;
+        // }
+        // );
+        
+        // console.log(addFavorite)
+        // console.log(p)
+        
+        // setListPokemons([...listPokemons,addFavorite]);
+        
+        
     }
+    console.log(listPokemons);
 
     const allPokemons = (e) => {
         e.preventDefault();
@@ -52,7 +72,6 @@ export const PokemonResults = ({ pokemons }) => {
         setListPokemons(favoritesPokemons);
         setFilterByName({filterByName:''});
     }
-
     return (
         <>
 
@@ -62,34 +81,39 @@ export const PokemonResults = ({ pokemons }) => {
                     aria-label="contacts"
                 >
                     {
-                        filterByName.length > 0 ?
-                        listPokemons.filter(pokemon => pokemon.name.includes(filterByName))
-                                .map(
-                                    (p) =>
-                                        <ListItem key={p.name} disablePadding>
-                                            <ListItemButton
-                                                sx={{ mb: 1 }}
-                                                onClick={() => { clickFavPoke(p, pokemons) }}  >
-                                                <ListItemText primary={p.name} />
-                                                <ListItemIcon >
-                                                    <StarIcon onClick={() => setStarColor('yellow')} sx={{ color: starColor}} />
-                                                </ListItemIcon>
-                                            </ListItemButton>
-                                        </ListItem>
-                                )
-                            :
-                            listPokemons.map((p) =>
-                                <ListItem key={p.name} disablePadding>
+                        // listPokemons.filter(pokemon => pokemon.name.includes(filterByName))
+                        //         .map(
+                        //             (p) =>
+                        //                 <ListItem key={p.name} disablePadding>
+                        //                     <ListItemButton
+                        //                         sx={{ mb: 1 }}
+                        //                         onClick={() => { clickFavPoke(p) }}  >
+                        //                         <ListItemText primary={p.name} />
+                        //                         <ListItemIcon >
+                        //                             <StarIcon onClick={() => setStarColor('yellow')} sx={{ color: starColor}} />
+                        //                         </ListItemIcon>
+                        //                     </ListItemButton>
+                        //                 </ListItem>
+                        //         )
+
+                        listPokemons
+                        .map(
+                            ({name,url,isFavorite}) =>
+                                <ListItem key={name} disablePadding>
                                     <ListItemButton
                                         sx={{ mb: 1 }}
-                                        onClick={() => { clickFavPoke(p, pokemons) }}  >
-                                        <ListItemText primary={p.name} />
+                                        onClick={() => {
+                                                        isFavorite = !isFavorite
+                                                      clickFavPoke({name,url,isFavorite})
+                                              }}  >
+                                        <ListItemText primary={name} />
                                         <ListItemIcon >
-                                            <StarIcon onClick={() =>   setStarColor('yellow')} sx={{ color: starColor}} />
+                                            <StarIcon  sx={{ color: starColor}} />
                                         </ListItemIcon>
                                     </ListItemButton>
                                 </ListItem>
-                            )
+                        )
+                        
                     }
 
                 </List>
