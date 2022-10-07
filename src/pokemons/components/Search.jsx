@@ -13,6 +13,8 @@ export const Search = () => {
 
    const pokemonByName = pokemons.filter( pokemon => pokemon.name.includes(value));
    dispatch( setFilterByName({filterByName: value} ));
+  
+   console.log(pokemonByName);
   }  
 
 

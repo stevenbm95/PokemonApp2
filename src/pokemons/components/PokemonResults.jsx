@@ -3,8 +3,8 @@ import StarIcon from '@mui/icons-material/Star';
 import Favicon from '@mui/icons-material/Grade';
 import ListIcon from '@mui/icons-material/FormatListBulleted';
 import { useDispatch, useSelector } from 'react-redux';
-import { setFavoritesPokemons, setFilterByName, setPokemons } from '../store/slices';
-import { useEffect, useRef, useState } from 'react';
+import { setFilterByName, setPokemons } from '../store/slices';
+import { useEffect, useState } from 'react';
 
 
 export const PokemonResults = ({ pokemons }) => {
@@ -12,64 +12,40 @@ export const PokemonResults = ({ pokemons }) => {
     const dispatch = useDispatch();
     const { filterByName, favoritesPokemons } = useSelector(state => state.pokemons);
     const [listPokemons, setListPokemons] = useState([]); 
-    const starColor = useRef('');
+    
     
     useEffect(() => {
         setListPokemons(pokemons);
 
     }, [pokemons])
+
+
     
-    const clickFavPoke = (p) => {
+    const clickFavPoke = ({name,url,isFavorite}) => {
+       
+        const favorites =  listPokemons.map( po => {
+            if( po.name === name  ){                
+                return {name,url,isFavorite}
+            }            
+            return po;
+        });
 
-        const favorites =  listPokemons.filter(po => po.name != p.name);
-        setListPokemons([...favorites,{
-            name: p.name,
-            url: p.url,
-            isFavorite: p.isFavorite
-            
-        }]);
-        
-        console.log(favorites)
-        
 
-        // const addFavorite = listPokemons.map( pokemon =>{
-        //     if(pokemon.name === p.name & p.isFavorite === false){
-        //         return {
-        //             name: pokemon.name,
-        //             url: pokemon.url,
-        //             isFavorite: true 
-        //         }                
-        //     } else {
-        //         return {
-        //             name: pokemon.name,
-        //             url: pokemon.url,
-        //             isFavorite: false 
-        //         }  
-        //     }
-            
-            
-        //     return pokemon;
-        // }
-        // );
-        
-        // console.log(addFavorite)
-        // console.log(p)
-        
-        // setListPokemons([...listPokemons,addFavorite]);
-        
-        
+
+        dispatch(setPokemons({pokemons:favorites}));        
     }
-    console.log(listPokemons);
 
     const allPokemons = (e) => {
         e.preventDefault();
+        
         setListPokemons(pokemons);
         setFilterByName({filterByName:''});
     }
 
     const favPokemons = (e) => {
         e.preventDefault();
-        setListPokemons(favoritesPokemons);
+        const favPokes = pokemons.filter( pf => pf.isFavorite === true);
+        setListPokemons(favPokes);
         setFilterByName({filterByName:''});
     }
     return (
@@ -96,7 +72,7 @@ export const PokemonResults = ({ pokemons }) => {
                         //                 </ListItem>
                         //         )
 
-                        listPokemons
+                        listPokemons.filter(pokemon => pokemon.name.includes(filterByName))
                         .map(
                             ({name,url,isFavorite}) =>
                                 <ListItem key={name} disablePadding>
@@ -105,10 +81,11 @@ export const PokemonResults = ({ pokemons }) => {
                                         onClick={() => {
                                                         isFavorite = !isFavorite
                                                       clickFavPoke({name,url,isFavorite})
+                                                      
                                               }}  >
                                         <ListItemText primary={name} />
                                         <ListItemIcon >
-                                            <StarIcon  sx={{ color: starColor}} />
+                                            <StarIcon  sx={{ color: isFavorite ? 'yellow' : ' '}} />
                                         </ListItemIcon>
                                     </ListItemButton>
                                 </ListItem>
