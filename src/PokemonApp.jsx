@@ -4,6 +4,8 @@ import { getPokemons } from "./pokemons/store/slices";
 import { PokemonResults, Search } from './pokemons/components';
 import { Grid, Paper , InputBase, IconButton} from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
+import { AppRouter } from './router/AppRouter';
+import { AppTheme } from './theme';
 
 export const PokemonApp = () => {
 
@@ -18,22 +20,19 @@ export const PokemonApp = () => {
 
  
   return (
-
-    <Grid sx={{             
-      background: '#2222',
-      margin: 'auto',
-      display: 'flex', alignItems: 'center', justifyContent: 'space-around', 
-      flexDirection:' column',
-      padding: 2,
-      height: '100vh'
-      }}>          
-      <Search />
-          
-          <PokemonResults pokemons={pokemons}>
-
-          </PokemonResults>
-  
-  </Grid>
- 
+    <AppTheme>
+        <AppRouter />
+        <Grid 
+          container
+          direction="column"
+          alignItems="center"
+          justifyContent="space-between"
+          sx={{ minHeight: '100vh' , backgroundColor: 'primary.main', padding: 4 }}
+        >          
+          <Search />
+          <PokemonResults pokemons={pokemons}/>
+      
+        </Grid>
+    </AppTheme> 
   )
 }

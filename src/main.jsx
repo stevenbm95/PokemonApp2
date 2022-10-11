@@ -5,13 +5,16 @@ import './styles.css'
 import { PokemonApp } from './PokemonApp'
 import {Provider} from 'react-redux';
 import { store } from './pokemons/store';
+import { BrowserRouter } from 'react-router-dom';
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   
   <React.StrictMode>
-    <Provider store={store}>
-      <PokemonApp />
-    </Provider>
+    <BrowserRouter>
+      <Provider store={store}>
+        <PokemonApp />
+      </Provider>
+    </BrowserRouter>
   </React.StrictMode>
 )
