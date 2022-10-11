@@ -6,6 +6,7 @@ import { Grid, Paper , InputBase, IconButton} from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 import { AppRouter } from './router/AppRouter';
 import { AppTheme } from './theme';
+import { PokemonLayout } from './pokemons/layout/PokemonLayout';
 
 export const PokemonApp = () => {
 
@@ -21,6 +22,7 @@ export const PokemonApp = () => {
  
   return (
     <AppTheme>
+      <PokemonLayout>
         <AppRouter />
         <Grid 
           container
@@ -33,6 +35,7 @@ export const PokemonApp = () => {
           <PokemonResults pokemons={pokemons}/>
       
         </Grid>
+        </PokemonLayout> 
     </AppTheme> 
   )
 }
