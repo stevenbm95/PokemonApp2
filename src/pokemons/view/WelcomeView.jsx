@@ -1,6 +1,6 @@
-import { Grid, Typography } from "@mui/material"
-import { Link } from "react-router-dom"
-import PokemonImg from '../../assets/images/Pokemon.png'
+import { Button, Grid, Typography } from "@mui/material";
+import { Link,Navigate } from "react-router-dom";
+import PokemonImg from '../../assets/images/Pokemon.png';
 
 export const WelcomeView = () => {
   return (
@@ -16,7 +16,24 @@ export const WelcomeView = () => {
         <Typography variant='p'>The digital encyclopedia created by Professor
              Oak is an invaluable tool to Trainers in the Pokémon world.</Typography>
 
-        <Link/>
+         {/* <Button variant="contained"  to="/list" disableElevation sx={{ bgcolor: 'primary.red', color: 'primary.main', mt:6}}> 
+        
+          <Link                
+                to="/list"
+            >
+                Get Started
+            </Link>
+
+        </Button>  */}
+
+        <Link   component='button'
+                variant="body2"          
+                to="/list"
+            >
+                Get Started
+            </Link>
+
+         
 
 
     </Grid>

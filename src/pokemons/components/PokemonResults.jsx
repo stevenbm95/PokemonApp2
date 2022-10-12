@@ -1,18 +1,16 @@
-import { Box, Button, Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import { Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
-import Favicon from '@mui/icons-material/Grade';
-import ListIcon from '@mui/icons-material/FormatListBulleted';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilterByName, setPokemons } from '../store/slices';
 import { useEffect, useState } from 'react';
+import { ButtonsAllFav } from './ButtonsAllFav';
 
 
 export const PokemonResults = ({ pokemons }) => {
 
     const dispatch = useDispatch();
-    const { filterByName, favoritesPokemons } = useSelector(state => state.pokemons);
+    const { filterByName} = useSelector(state => state.pokemons);
     const [listPokemons, setListPokemons] = useState([]);
-
 
     useEffect(() => {
         setListPokemons(pokemons);
@@ -42,6 +40,11 @@ export const PokemonResults = ({ pokemons }) => {
         setListPokemons(favPokes);
         setFilterByName({ filterByName: '' });
     }
+
+    const shoWInfo = (name,url) => {
+        const stats = url
+        console.log(stats);
+    }
     return (
         <>
             <Grid >
@@ -56,14 +59,18 @@ export const PokemonResults = ({ pokemons }) => {
                                     <ListItem key={name} disablePadding>
                                         <ListItemButton
                                             sx={{ mb: 1 }}
-                                            onClick={() => {
-                                                isFavorite = !isFavorite
-                                                clickFavPoke({ name, url, isFavorite })
-
-                                            }}  >
-                                            <ListItemText primary={name} />
+                                            >
+                                            <ListItemText primary={name}
+                                                onClick={() => shoWInfo(name, url)}
+                                            />
                                             <ListItemIcon >
-                                                <StarIcon sx={{ color: isFavorite ? 'yellow' : ' ' }} />
+                                                <StarIcon sx={{ color: isFavorite ? '#ECA539' : ' ' }}
+                                                         onClick={() => {
+                                                            isFavorite = !isFavorite
+                                                            clickFavPoke({ name, url, isFavorite })
+            
+                                                        }} 
+                                                />
                                             </ListItemIcon>
                                         </ListItemButton>
                                     </ListItem>
@@ -72,30 +79,7 @@ export const PokemonResults = ({ pokemons }) => {
 
                 </List>
 
-                <Box>
-                    <Button variant="outlined"
-                        startIcon={<ListIcon />}
-                        onClick={e =>
-                            allPokemons(e)
-                        }
-
-
-                    >
-                        All
-                    </Button>
-                    <Button variant="contained" startIcon={<Favicon />}
-                        onClick={
-                            e =>
-                                favPokemons(e)
-                        }
-                    >
-                        Favorites
-                    </Button>
-                </Box>
-
-
-
-
+                <ButtonsAllFav allPokemons={allPokemons} favPokemons={favPokemons} />
 
             </Grid>
 

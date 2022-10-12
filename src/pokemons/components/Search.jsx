@@ -1,29 +1,22 @@
 import {  Box, Paper , InputBase, IconButton, } from '@mui/material';  
 import { useDispatch, useSelector } from 'react-redux/es/exports';
 import SearchIcon from '@mui/icons-material/Search';
-import { useEffect, useState } from 'react';
-import { setFilterByName,  setPokemons } from '../store/slices';
+import { setFilterByName } from '../store/slices';
 
 export const Search = () => {
 
   const dispatch = useDispatch();
-  const {filterByName, pokemons} = useSelector(state => state.pokemons); 
+  const {filterByName,pokemons} = useSelector(state => state.pokemons); 
 
   const onSearchByName = ({value}) => {  
 
    const pokemonByName = pokemons.filter( pokemon => pokemon.name.includes(value));
-   dispatch( setFilterByName({filterByName: value} ));
-  
+   dispatch( setFilterByName({filterByName: value} ));  
    console.log(pokemonByName);
-  }  
-
-
-
-  
-    
+  }      
   return (
     <Box sx={{}}>       
-                  <Paper
+          <Paper
             component="form"
             sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400 }}
           >        

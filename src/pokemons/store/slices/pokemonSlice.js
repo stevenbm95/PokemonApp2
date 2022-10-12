@@ -5,7 +5,6 @@ export const pokemonSlice = createSlice({
   initialState : {
     pokemons: [],
     isLoading: false,
-    favoritesPokemons: [],
     filterByName: ''
    },
   reducers: {
@@ -17,9 +16,6 @@ export const pokemonSlice = createSlice({
       state.pokemons = action.payload.pokemons
       
     }, 
-    setFavoritesPokemons: (state, action) =>{
-      state.favoritesPokemons = action.payload.favoritesPokemons
-    }, 
     setFilterByName: (state, action) =>{
       state.filterByName = action.payload.filterByName
     }
@@ -28,4 +24,4 @@ export const pokemonSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { startLoadinPokemons, setPokemons, setFavoritesPokemons,setFilterByName} = pokemonSlice.actions;
+export const { startLoadinPokemons, setPokemons,setFilterByName} = pokemonSlice.actions;

@@ -18,17 +18,15 @@ export const PokemonApp = () => {
     dispatch(getPokemons()); 
    
   }, []);
-
-
  
   return (
     <AppTheme>
-      <PokemonLayout>
+      <PokemonLayout >
         <AppRouter />
         
           {/* <Search />
           <PokemonResults pokemons={pokemons}/> */}
-         
+          
         </PokemonLayout> 
     </AppTheme> 
   )
