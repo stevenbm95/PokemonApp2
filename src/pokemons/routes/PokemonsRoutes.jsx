@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { WelcomePage, LoadingPage, ListPage} from '../pages';
+import {PokemonPage} from '../pages';
 
 
 
@@ -7,11 +7,7 @@ import { WelcomePage, LoadingPage, ListPage} from '../pages';
 export const PokemonsRoutes = () => {
   return (
     <Routes>
-        <Route path="welcome" element={ <WelcomePage />}/>
-        <Route path="loading" element={ <LoadingPage />}/>
-        <Route path="list" element={ <ListPage/>} />
-
-        <Route path="/*" element={ <WelcomePage/>} />
+       <Route path="/*" element={ <PokemonPage/>} />
     </Routes>
   )
 }

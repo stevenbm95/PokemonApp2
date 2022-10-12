@@ -15,6 +15,7 @@ export const NavBar = () => {
             </IconButton>
             <Grid container directition='row' justifyContent='space-between' alignItems='center'>
                 <Typography variant='h6' noWrap component='div'> Pokemon</Typography>
+                
             </Grid>
         </Toolbar>
     </AppBar>

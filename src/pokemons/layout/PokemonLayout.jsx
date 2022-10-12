@@ -7,7 +7,7 @@ export const PokemonLayout = ({children}) => {
         <Box>
             <NavBar />
 
-            <Box>
+            <Box >
             {/* isLoading */}
             { children}
 

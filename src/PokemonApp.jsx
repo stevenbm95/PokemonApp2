@@ -7,6 +7,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { AppRouter } from './router/AppRouter';
 import { AppTheme } from './theme';
 import { PokemonLayout } from './pokemons/layout/PokemonLayout';
+import { PokemonPage } from './pokemons/pages';
 
 export const PokemonApp = () => {
 
@@ -24,17 +25,10 @@ export const PokemonApp = () => {
     <AppTheme>
       <PokemonLayout>
         <AppRouter />
-        <Grid 
-          container
-          direction="column"
-          alignItems="center"
-          justifyContent="space-between"
-          sx={{ minHeight: '100vh' , backgroundColor: 'primary.main', padding: 4 }}
-        >          
-          <Search />
-          <PokemonResults pokemons={pokemons}/>
-      
-        </Grid>
+        
+          {/* <Search />
+          <PokemonResults pokemons={pokemons}/> */}
+         
         </PokemonLayout> 
     </AppTheme> 
   )
