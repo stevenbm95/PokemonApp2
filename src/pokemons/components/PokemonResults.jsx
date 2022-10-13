@@ -47,42 +47,35 @@ export const PokemonResults = ({ pokemons }) => {
     }
     return (
         <>
-            <Grid >
+           
                 <List
-                    sx={{ maxWidth: 360, maxHeight: 500, overflow: 'auto', margin: 'auto', bgcolor: 'background.paper' }}
+                    sx={{  maxHeight: 500, overflow: 'auto' }}
                     aria-label="contacts"
                 >
                     {
                         listPokemons.filter(pokemon => pokemon.name.includes(filterByName))
                             .map(
                                 ({ name, url, isFavorite }) =>
-                                    <ListItem key={name} disablePadding>
-                                        <ListItemButton
-                                            sx={{ mb: 1 }}
-                                            >
+                                    <ListItem key={name}
+                                              disablePadding
+                                              sx={{background: 'white', mb: 1 }}
+                                              >
+                                        <ListItemButton>
                                             <ListItemText primary={name}
-                                                onClick={() => shoWInfo(name, url)}
-                                            />
+                                                onClick={() => shoWInfo(name, url)}    />
                                             <ListItemIcon >
                                                 <StarIcon sx={{ color: isFavorite ? '#ECA539' : ' ' }}
                                                          onClick={() => {
                                                             isFavorite = !isFavorite
-                                                            clickFavPoke({ name, url, isFavorite })
-            
-                                                        }} 
-                                                />
+                                                            clickFavPoke({ name, url, isFavorite })            
+                                                        }}  />
                                             </ListItemIcon>
                                         </ListItemButton>
                                     </ListItem>
                             )
                     }
-
                 </List>
-
                 <ButtonsAllFav allPokemons={allPokemons} favPokemons={favPokemons} />
-
-            </Grid>
-
         </>
     )
 }

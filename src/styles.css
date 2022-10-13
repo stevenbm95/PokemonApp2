@@ -18,3 +18,20 @@ code {
   height: 288px;
   
 }
+
+.ButtonLink {
+  padding: 11px 20px;
+  width: 131px;
+  height: 44px;  
+  background: #F22539;
+  border-radius: 60px;
+  text-decoration: none;
+  color: white;
+  
+}
+
+.ButtonLink:hover{
+  
+}
+
+

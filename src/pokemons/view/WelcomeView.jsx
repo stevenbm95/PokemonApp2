@@ -26,9 +26,10 @@ export const WelcomeView = () => {
 
         </Button>  */}
 
-        <Link   component='button'
-                variant="body2"          
+        <Link   className="ButtonLink"
                 to="/list"
+
+            
             >
                 Get Started
             </Link>
