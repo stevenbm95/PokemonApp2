@@ -28,9 +28,9 @@ export const ButtonsAllFav = ({allPokemons,favPokemons}) => {
 
                 startIcon={<ListIcon />}
 
-                onClick={e => {
+                onClick={() => {
                   setChangeColor(!changeColor)
-                  allPokemons(e)
+                  allPokemons()
                 } }
             >
                 All
@@ -42,9 +42,9 @@ export const ButtonsAllFav = ({allPokemons,favPokemons}) => {
 
                 startIcon={<Favicon />}
                 
-                onClick={e => {
+                onClick={() => {
                   setChangeColor(!changeColor)
-                  favPokemons(e)
+                  favPokemons()
 
                 }}
             >

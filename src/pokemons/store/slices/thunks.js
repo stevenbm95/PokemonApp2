@@ -14,7 +14,7 @@ export const getPokemons =  () => {
                   url: pok. url,
                   isFavorite: false
                 }
-                a
+                
               });
         dispatch(setPokemons( {pokemons: pokemons } ));
     

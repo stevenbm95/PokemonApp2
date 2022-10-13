@@ -1,7 +1,15 @@
-export const changeStatePokemon = (p,pokemons) => {
-    p.favoriteState =  !p.favoriteState     
-    
-    const newFavPoke = pokemons.filter(pf =>{return  pf.favoriteState });
-  
-    return newFavPoke
+import { useDispatch } from 'react-redux';
+import { setPokemons } from '../store/slices';
+import {useState } from 'react';
+
+
+export const changeStatePokemon = ({ name, url, isFavorite}) => {
+
+    isFavorite
+    if (po.name === name) {
+        return { name, url, isFavorite }
+    }
+    return po;
+
+
     }
