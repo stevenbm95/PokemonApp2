@@ -8,7 +8,6 @@ export const ButtonsAllFav = ({allPokemons,favPokemons}) => {
   
   const [changeColor, setChangeColor] = useState(true);
   
-  console.log(changeColor)
   return (
     
     <Grid container justifyContent='center'
