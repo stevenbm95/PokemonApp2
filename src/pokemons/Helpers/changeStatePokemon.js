@@ -13,3 +13,20 @@ export const changeStatePokemon = ({ name, url, isFavorite}) => {
 
 
     }
+
+
+
+
+//     import React from 'react'
+
+// export const changeStatePokemon = (pokemon) => {
+
+//    pokemon.favoriteState = !pokemon.favoriteState;
+ 
+
+//    console.log(pokemon);
+//     // <ListFav pokemon={pokemon}/>
+//     return pokemon 
+
+  
+// }

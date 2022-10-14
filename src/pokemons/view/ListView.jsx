@@ -7,7 +7,7 @@ export const ListView = () => {
   return (
     <Grid container direction='column' alignItems='center' justifyContent='space-between' >
         <Search/>
-        <PokemonResults pokemons={pokemons}/>
+        <PokemonResults pokemons={pokemons} />
         
     </Grid>
   )

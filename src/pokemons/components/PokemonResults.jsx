@@ -10,8 +10,8 @@ import { ListPokemons } from './ListPokemons';
 export const PokemonResults = ({ pokemons }) => {
 
     const dispatch = useDispatch();
-    // const {favoritePokemons, filterByName} = useSelector(state => state.pokemons);
-    const [favoritePokemos, setfavoritePokemos] = useState([])
+    const {favoritePokemons, filterByName} = useSelector(state => state.pokemons);
+    const [stateFavoritePokemos, setStateFavoritePokemos] = useState([])
     const [listPokemons, setListPokemons] = useState(pokemons);
     const [showList, setShowList] = useState(false)
 
@@ -19,10 +19,32 @@ export const PokemonResults = ({ pokemons }) => {
         setListPokemons(pokemons);
     },[pokemons]);
 
-    console.log(showList);
+    useEffect(() => {
+        setStateFavoritePokemos(favoritePokemons);
+    },[favoritePokemons]);
 
+
+
+    const changeStatePokemon = ({ name, url, isFavorite }) => {
+        
+        const allPookemosUpdates = pokemons.map(po => {
+            if (po.name === name) {
+                return  { name, url, isFavorite }
+            }
+            return po;
+        });    
+        
+ 
+        // dispatch(setPokemons({ pokemons: allPookemosUpdates }));
+        
+        setListPokemons(allPookemosUpdates);
+        
+    }
+
+    
+    
     const allPokemons = () => {
-       
+        
         setListPokemons(pokemons);
         setShowList(false);
         console.log(showList);
@@ -31,9 +53,8 @@ export const PokemonResults = ({ pokemons }) => {
     const favPokemons = () => {
        
         setShowList(true);
-        const favPokes = pokemons.filter(pf => pf.isFavorite === true);
-        setfavoritePokemos(favPokes);
-        console.log(favPokes);
+        // const favPokes = listPokemons.filter(pf => pf.isFavorite === true);
+        setStateFavoritePokemos(favoritePokemons);
     }
 
     return (
@@ -42,10 +63,10 @@ export const PokemonResults = ({ pokemons }) => {
                     sx={{  maxHeight: 500, overflow: 'auto' }}
                     aria-label="contacts">
                         {showList ?
-                        <ListPokemons allPokemons={favoritePokemos}/>
+                        <ListPokemons allPokemons={stateFavoritePokemos} changeStatePokemon={changeStatePokemon}/>
                   
                         :
-                        <ListPokemons allPokemons={listPokemons}/>
+                        <ListPokemons allPokemons={listPokemons} changeStatePokemon={changeStatePokemon}/>
                   }
                 </List>
                 <ButtonsAllFav allPokemons={allPokemons} favPokemons={favPokemons} />

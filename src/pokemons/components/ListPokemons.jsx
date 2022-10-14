@@ -1,51 +1,70 @@
 import { ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 import { useDispatch, useSelector } from 'react-redux';
-import { setPokemons } from '../store/slices';
+import { setPokemons,setFavoritePokemons } from '../store/slices';
 
 
-export const ListPokemons = ({allPokemons}) => {
+export const ListPokemons = ({allPokemons,changeStatePokemon}) => {
     const dispatch = useDispatch();
-    const {filterByName} = useSelector(state => state.pokemons);
+    const {filterByName,pokemons,favoritePokemons} = useSelector(state => state.pokemons);
 
 
-     const changeStatePokemon = ({ name, url, isFavorite }) => {
+  const changeStatePokemons = ({name,url,isFavorite}) => {
+        const allPookemosUpdates = pokemons.map(po => {
+            if (po.name === name) {
+                return  { name, url, isFavorite }
+            }
+            return po;
+        });
+        dispatch(setPokemons({ pokemons: allPookemosUpdates }))
 
-        
-            const favorites = allPokemons.map(po => {
+        if(isFavorite){
+            const [ newPokemons] =  pokemons.filter(pf => pf.name===name).map(() =>
+                 {  return {name,url,isFavorite}}
+                );
+            dispatch(setFavoritePokemons({
+                favoritePokemons: [...favoritePokemons,newPokemons]
+                    })); 
+                    
+            console.log(favoritePokemons)
+        } else {
+            console.log(favoritePokemons)
+            const pokemon =  favoritePokemons.filter(pf =>  pf.name != name).map(po => {
                 if (po.name === name) {
                     return  { name, url, isFavorite }
                 }
                 return po;
-            });    
-
-            isFavorite ?
-            dispatch(setPokemons({ pokemons: favorites }))
-            :  dispatch(setPokemons({ pokemons: [...allPokemons,favorites] }));
-         
+            });
+        console.log(pokemon);
+      dispatch(setFavoritePokemons({
+           favoritePokemons: pokemon
+           })); 
+        }
     }
+    
+
 
   return (   
             allPokemons.filter(pokemon => pokemon.name.includes(filterByName))
-            .map(
-                ({ name, url, isFavorite }) =>
-                    <ListItem key={name}
-                              disablePadding
-                              sx={{background: 'white', mb: 1 }}
-                              >
-                        <ListItemButton>
-                            <ListItemText primary={name}
-                                onClick={() => shoWInfo(name, url)}    />
-                            <ListItemIcon >
-                                <StarIcon sx={{ color: isFavorite ? '#ECA539' : ' ' }}
-                                         onClick={() => {
-                                            isFavorite = !isFavorite
-                                            changeStatePokemon({ name, url, isFavorite });
-                                            // dispatch(setPokemons({ pokemons: { name, url, isFavorite } }))         
-                                        }}  />
-                            </ListItemIcon>
-                        </ListItemButton>
-                    </ListItem>
+                        .map(
+                            ({name,url,isFavorite}) =>
+                                <ListItem key={name}
+                                        disablePadding
+                                        sx={{background: 'white', mb: 1 }}
+                                        >
+                                    <ListItemButton>
+                                        <ListItemText primary={name}
+                                            onClick={() => shoWInfo(name, url)}    />
+                                        <ListItemIcon >
+                                            <StarIcon sx={{ color: isFavorite ? '#ECA539' : ' ' }}
+                                                    onClick={() => {
+                                                        isFavorite = ! isFavorite
+                                                        changeStatePokemons({name,url,isFavorite});                                                       
+                                                        
+                                                    }}  />
+                                        </ListItemIcon>
+                                    </ListItemButton>
+                                </ListItem>
     
    
   )
