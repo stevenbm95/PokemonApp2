@@ -1,32 +1,37 @@
-import { useDispatch } from 'react-redux';
-import { setPokemons } from '../store/slices';
-import {useState } from 'react';
 
+// import { useDispatch, useSelector } from 'react-redux';
+// import { setPokemons, setFavoritePokemons } from '../store/slices';
 
-export const changeStatePokemon = ({ name, url, isFavorite}) => {
+// export const changeStatePokemons = ({ name = '', url ='', isFavorite }) => {
 
-    isFavorite
-    if (po.name === name) {
-        return { name, url, isFavorite }
-    }
-    return po;
+//     const dispatch = useDispatch();
+//     const { pokemons, favoritePokemons } = useSelector(state => state.pokemons);
 
+//     const allPookemosUpdates = pokemons.map(po => {
+//         if (po.name === name) {
+//             return  { name, url, isFavorite }
+//         }
+//         return po;
+//     });
+//     dispatch(setPokemons({ pokemons: allPookemosUpdates }))
 
-    }
+//     if (isFavorite) {
+//         const [newPokemons] = pokemons.filter(pf => pf.name === name).map(() => { return { name, url, isFavorite } }
+//         );
+//         dispatch(setFavoritePokemons({ favoritePokemons: [...favoritePokemons, newPokemons] }));
 
-
-
-
-//     import React from 'react'
-
-// export const changeStatePokemon = (pokemon) => {
-
-//    pokemon.favoriteState = !pokemon.favoriteState;
- 
-
-//    console.log(pokemon);
-//     // <ListFav pokemon={pokemon}/>
-//     return pokemon 
-
-  
+//         console.log(favoritePokemons)
+//     } else {
+//         console.log(favoritePokemons)
+//         const pokemon = favoritePokemons.filter(pf => pf.name != name).map(po => {
+//             if (po.name === name) {
+//                 return { name, url, isFavorite }
+//             }
+//             return po;
+//         });
+//         console.log(pokemon);
+//         dispatch(setFavoritePokemons({
+//             favoritePokemons: pokemon
+//         }));
+//     }
 // }

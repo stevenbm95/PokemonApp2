@@ -6,14 +6,11 @@ import { setFilterByName } from '../store/slices';
 export const Search = () => {
 
   const dispatch = useDispatch();
-  const {filterByName,pokemons} = useSelector(state => state.pokemons); 
+  
+    const onSearchByName = ({value}) => {  
 
-  const onSearchByName = ({value}) => {  
-
-   const pokemonByName = pokemons.filter( pokemon => pokemon.name.includes(value));
-   dispatch( setFilterByName({filterByName: value} ));  
-   console.log(pokemonByName);
-  }      
+      dispatch( setFilterByName({filterByName: value} )); 
+    }      
   return (
     <Box sx={{}}>       
           <Paper

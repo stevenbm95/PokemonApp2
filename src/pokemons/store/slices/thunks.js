@@ -1,6 +1,6 @@
 
 import { pokemonApi } from "../../../api/pokemonApi";
-import { setPokemons, startLoadinPokemons } from "./pokemonSlice";
+import { setPokemons, startLoadinPokemons,setStatsPokemon } from "./pokemonSlice";
 
 export const getPokemons =  () => {
 
@@ -20,3 +20,17 @@ export const getPokemons =  () => {
     
     }
   }
+
+  export const getPokemonByName =  ({name}) => {
+       return async (dispatch, getState) => {
+        const {data} = await pokemonApi.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
+        const {weight,height,types} = data;
+        const statsPokemon = {name,weight,height,types};
+
+        dispatch(setStatsPokemon( {statsPokemon: statsPokemon } ));
+      
+    }
+  }
+
+
+  
