@@ -45,7 +45,7 @@ export const ListPokemons = ({ allPokemons }) => {
                         <ListItemButton onClick={()=>setInfoStats({name})}>
 
                             {/* <ListItemText primary={name}/> */}
-                            <ModalPokemon name={name}/>
+                            <ModalPokemon name={name} isFavorite={isFavorite}/>
                             
                             
                             <ListItemIcon >

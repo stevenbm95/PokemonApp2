@@ -34,8 +34,9 @@ export const PokemonResults = ({ pokemons }) => {
     return (
         <>
             <List sx={{ maxHeight: 500, overflow: 'auto' }} aria-label="contacts">
-                { showList ?  <ListPokemons allPokemons={stateFavoritePokemos} />
-                    :  <ListPokemons allPokemons={listPokemons} />
+                { showList ?
+                stateFavoritePokemos.length == 0 ? <h1> vacio</h1> :<ListPokemons allPokemons={stateFavoritePokemos} />
+                :  <ListPokemons allPokemons={listPokemons} />
                 }
             </List>
             <ButtonsAllFav allPokemons={allPokemons} favPokemons={favPokemons} />

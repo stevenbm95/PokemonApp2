@@ -22,7 +22,7 @@ export const ButtonsAllFav = ({allPokemons,favPokemons}) => {
                 sx={{                  
                 bgcolor: changeColor ? 'primary.red' : 'primary.grey', 
                 color: 'white',                 
-                marginRight: '10px',
+                marginRight: '10px', textTransform: 'inherit'
                 
                 }}
 
@@ -37,9 +37,10 @@ export const ButtonsAllFav = ({allPokemons,favPokemons}) => {
             </Button>
             <Button 
                 variant="contained" 
+                
                 sx={{
                   bgcolor: changeColor ? 'primary.grey' :  'primary.red',
-                  color: 'white'
+                  color: 'white', textTransform: 'inherit'
                 
                 }}
 

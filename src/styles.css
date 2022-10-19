@@ -27,6 +27,7 @@ code {
   border-radius: 60px;
   text-decoration: none;
   color: white;
+  text-transform: inherit;
   
 }
 
