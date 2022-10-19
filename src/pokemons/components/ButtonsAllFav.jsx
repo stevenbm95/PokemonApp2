@@ -35,10 +35,13 @@ export const ButtonsAllFav = ({allPokemons,favPokemons}) => {
             >
                 All
             </Button>
-            <Button variant="contained" 
+            <Button 
+                variant="contained" 
                 sx={{
                   bgcolor: changeColor ? 'primary.grey' :  'primary.red',
-                  color: 'white'}}
+                  color: 'white'
+                
+                }}
 
                 startIcon={<Favicon />}
                 

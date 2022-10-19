@@ -12,15 +12,11 @@ export const ListPokemons = ({ allPokemons }) => {
     const changeStatePokemons = ({ name, url, isFavorite }) => {
         const allPookemosUpdates = pokemons.map(po => {
             if (po.name === name) {
-                console.log(name);
-
                 return  { name, url, isFavorite }
             }
             return po;
         });
         dispatch(setPokemons({ pokemons: allPookemosUpdates }));
-        // dispatch(getPokemonByName({name}));
-        
         if (isFavorite) {
             const [newPokemons] = pokemons.filter(pf => pf.name === name).map(() => { return { name, url, isFavorite } });
             dispatch(setFavoritePokemons({ favoritePokemons: [...favoritePokemons, newPokemons] }));
@@ -33,15 +29,8 @@ export const ListPokemons = ({ allPokemons }) => {
         }
         
         
-        // const shoWInfo = ({name, url}) => {
-            //   dispatch(getPokemonByName({name}));
-            
-            //   console.log(entro);  
-            // }
-            const setInfoStats =({name}) => {
-                dispatch(getPokemonByName({name}));
-                const {weight,height,types} = statsPokemon
-                console.log({weight,height,types});
+    const setInfoStats =({name}) => {
+          dispatch(getPokemonByName({name}))
      }
     
     return (
@@ -55,7 +44,7 @@ export const ListPokemons = ({ allPokemons }) => {
                     >
                         <ListItemButton onClick={()=>setInfoStats({name})}>
 
-                            <ListItemText primary={name}/>
+                            {/* <ListItemText primary={name}/> */}
                             <ModalPokemon name={name}/>
                             
                             

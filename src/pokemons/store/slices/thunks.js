@@ -25,8 +25,8 @@ export const getPokemons =  () => {
        return async (dispatch, getState) => {
         const {data} = await pokemonApi.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
         const {weight,height,types} = data;
-        const statsPokemon = {name,weight,height,types};
-
+        const allTypes =  types.map((tp,i) => (i >= 0 && i < types.length-1) ? `${tp.type.name} , ` : tp.type.name);
+        const statsPokemon = {name,weight,height,allTypes};
         dispatch(setStatsPokemon( {statsPokemon: statsPokemon } ));
       
     }
